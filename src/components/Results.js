@@ -1,18 +1,30 @@
-import React from 'react'
-import {Grid, ListGroup, ListGroupItem} from 'react-bootstrap'
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
-const Results = () => (
-  <Grid>
-    <ListGroup>
-      <ListGroupItem href="#" active>
-        Link 1
-      </ListGroupItem>
-      <ListGroupItem href="#">Link 2</ListGroupItem>
-      <ListGroupItem href="#" disabled>
-        Link 3
-      </ListGroupItem>
-    </ListGroup>;
-  </Grid>
-)
+class Results extends Component {
 
-export default Results;
+  render(){
+    return (
+      <div>
+        results
+      </div>
+    )
+  }
+}
+
+function mapStateToProps(state) {
+  // whatever is returned from here will show up as
+  //  this.props inside of this Component
+  //  this is the glue between react & redux
+  return {
+    sex: state.sex,
+    age: state.sex,
+    weight: state.sex,
+    height: state.sex,
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  null
+)(Results);

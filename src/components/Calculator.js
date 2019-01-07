@@ -1,16 +1,19 @@
 import React from 'react'
-import {Form, FormGroup, FormControl, Button} from 'react-bootstrap'
+// import {Form, FormGroup, FormControl, Button} from 'react-bootstrap'
+import Results from './Results'
+import Age from './Age'
+import Height from './Height'
+import Sex from './Sex'
+import Weight from './Weight'
 
 const Calculator = () => (
-  <Form inline>
-    <FormGroup constrolId="formInlineEmail">
-      <FormControl type="search" placeholder="enter something" />
-    </FormGroup>
-    {' '}
-    <Button type="submit">
-      submit
-    </Button>
-  </Form>
+  <div>
+    <Sex />
+    <Age />
+    <Weight />
+    <Height />
+    <Results />
+  </div>
 )
 
 export default Calculator;

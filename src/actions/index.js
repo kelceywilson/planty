@@ -2,6 +2,11 @@ export const BMR = 'BMR'
 
 
 // NOT FOR CHILDREN UNDER 9 YEARS
+// weight in pounds
+// height in inches
+// age in years
+// gender identity for medical purposes
+// activity level 
 
 // weight in lb, height in in, age in years
 export function bmr(sex, weight, height, age){
@@ -22,26 +27,31 @@ export function bmr(sex, weight, height, age){
 export function calories(bmr, activity){
   if (activity === 1){
     return 1.2 * bmr
-  } else if(activity == 2) {
+  } else if(activity === 2) {
     return 1.375 * bmr
-  } else if(activity == 3) {
+  } else if(activity === 3) {
     return 1.55 * bmr
   } else {
     return 1.725 * bmr
   }
 }
 
-// WHAT IS YOUR UPPER LIMIT ON FAT FOR THE CALORIES YOU CONSUME?		
-// Total Calories per Day	Saturated Fat in Grams	Total Fat in Grams
-// 1,600	18 or less	53
-// 2,000*	20 or less	65
-// 2,200	24 or less	73
-// 2,500*	25 or less	80
-// 2,800	31 or less	93
-
-// units are grams -- base on weight in pounds
-export function unsat_fat(weight){
-  return .5 * weight * 0.45359
+// units are grams - [saturated fat, total fat]
+export function fat(calories){
+  switch (calories) {
+  case 1600:
+    return [18,53]
+  case 2000:
+    return [20,65]
+  case 2200:
+    return [24,73]
+  case 2500:
+    return [25,80]
+  case 2800:
+    return [31,93]
+  default:
+    return [18,53]
+  }
 }
 
 // protein needs
@@ -50,9 +60,9 @@ export function unsat_fat(weight){
 export function protein(weight, activity){
   if(activity === 1){
     return .8 * weight * 0.45359
-  } else if(activity == 2) {
+  } else if(activity === 2) {
     return weight * 0.45359
-  } else if(activity == 3) {
+  } else if(activity === 3) {
     return 1.3 * weight * 0.45359
   } else {
     return 1.5 * weight * 0.45359
@@ -92,7 +102,7 @@ export function iron(age, sex){
 
 // units are mg/day
 export function zinc(age, sex, pregnant, breastfeeding){
-  if (sex = "f"){
+  if (sex === "f"){
     if (age < 14) {return 8}
     if (pregnant === true) {return 27}
     if (breastfeeding === true){
