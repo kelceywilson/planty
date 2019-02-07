@@ -1,21 +1,53 @@
-import React from 'react'
-import {Form, ButtonToolbar, ToggleButtonGroup, ToggleButton, Button} from 'react-bootstrap'
+import React from "react";
+import { connect } from "react-redux";
+import { weigher, weighed } from "../actions";
 
-const Height = () => (
-  <div class='flex-center'>
-    <Form inline>
-      <ButtonToolbar>
-        <ToggleButtonGroup type="radio" name="options" >
-          <ToggleButton value={1}>Male</ToggleButton>
-          <ToggleButton value={2}>Female</ToggleButton>
-        </ToggleButtonGroup>
-      </ButtonToolbar>
-      {' '}
-      <Button type="submit">
-        submit
-      </Button>
-    </Form>
-  </div>
-)
+class Weight extends React.Component {
+  componentDidMount() {
+    this.weightInput.focus();
+  }
+  render() {
+    const { weighted, weight } = this.props.stats;
 
-export default Height;
+    const pounds = (
+      <div>
+        <p>Weight: {weight} lbs</p>
+      </div>
+    );
+    const weightless = (
+      <div>
+        <form>
+          <label>Weight </label>
+          <input
+            onChange={e => this.props.weigher(e.target.value)}
+            type="number"
+            placeholder="in pounds?"
+            ref={input => {
+              this.weightInput = input;
+            }}
+          />
+          <button
+            onClick={e => {
+              e.preventDefault();
+              this.props.weighed();
+            }}
+          >
+            submit
+          </button>
+        </form>
+      </div>
+    );
+
+    return <div>{weighted === true ? pounds : weightless}</div>;
+  }
+}
+
+function mapStateToProps(state) {
+  return {
+    stats: state.stats
+  };
+}
+export default connect(
+  mapStateToProps,
+  { weigher, weighed }
+)(Weight);

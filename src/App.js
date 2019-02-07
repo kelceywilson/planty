@@ -1,26 +1,22 @@
-import React, { Component } from 'react';
-import './App.css';
-import {Grid, Jumbotron} from 'react-bootstrap'
-import { Provider } from "react-redux";
-import store from "./store";
-import Calculator from './components/Calculator'
+import React, { Component } from "react";
+import "./App.css";
+import { Grid, Jumbotron } from "react-bootstrap";
+import Calculator from "./components/Calculator";
 // import Sex from './components/Sex'
 // import Results from './components/Results'
 
 class App extends Component {
   render() {
     return (
-      <Provider store={store}>
       <div className="App">
         <Jumbotron>
           <Grid>
             <h1>Plenty</h1>
-            <p>Eat plants</p>
+            <p>all the nutrition you need</p>
           </Grid>
         </Jumbotron>
         <Calculator />
       </div>
-      </Provider>
     );
   }
 }

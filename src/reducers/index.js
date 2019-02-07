@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import BMRReducer from './bmr_reducer'
+import stats_reducer from './stats_reducer'
 
 const rootReducer = combineReducers({
-  bmr: BMRReducer
+  stats: stats_reducer
 });
 
 export default rootReducer

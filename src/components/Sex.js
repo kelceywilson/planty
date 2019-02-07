@@ -1,21 +1,27 @@
-import React from 'react'
-import {Form, ButtonToolbar, ToggleButtonGroup, ToggleButton, Button} from 'react-bootstrap'
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { chooseSex } from "../actions";
 
-const Sex = () => (
-  <div class='flex-center'>
-    <Form inline>
-      <ButtonToolbar>
-        <ToggleButtonGroup type="radio" name="options" >
-          <ToggleButton value={1}>Male</ToggleButton>
-          <ToggleButton value={2}>Female</ToggleButton>
-        </ToggleButtonGroup>
-      </ButtonToolbar>
-      {' '}
-      <Button type="submit">
-        submit
-      </Button>
-    </Form>
-  </div>
-)
+class Sex extends Component {
+  render() {
+    const { sex } = this.props.stats;
+    const choose = (
+      <div>
+        <button onClick={() => this.props.chooseSex("Male")}>Male?</button>
+        <button onClick={() => this.props.chooseSex("Female")}>Female?</button>
+      </div>
+    );
+    const chosen = <div>{sex}</div>;
+    return <div>{sex === undefined ? choose : chosen}</div>;
+  }
+}
 
-export default Sex;
+function mapStateToProps(state) {
+  return {
+    stats: state.stats
+  };
+}
+export default connect(
+  mapStateToProps,
+  { chooseSex }
+)(Sex);
