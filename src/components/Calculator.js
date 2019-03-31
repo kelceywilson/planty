@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { reset } from "../actions";
 import BMR from "./BMR";
 import Age from "./Age";
 import Activity from "./Activity";
@@ -32,7 +33,7 @@ class Calculator extends React.Component {
     console.log(this.props.stats);
 
     const components = (
-      <div>
+      <div className="grid">
         <Sex />
         <Pregnant />
         <Breastfeeding />
@@ -42,12 +43,17 @@ class Calculator extends React.Component {
         {high === true ? <Activity /> : null}
         {active > 0 ? <BMR /> : null}
         {bmr > 0 ? <Calories /> : null}
-        {calories > 0 ? <Fat /> : null}
-        {calories > 0 ? <Protein /> : null}
-        {calories > 0 ? <Fiber /> : null}
-        {calories > 0 ? <D3 /> : null}
-        {calories > 0 ? <Iron /> : null}
-        {calories > 0 ? <Zinc /> : null}
+        {calories > 0 ? (
+          <div>
+            <Fat />
+            <Protein />
+            <Fiber />
+            <D3 />
+            <Iron />
+            <Zinc />
+          </div>
+        ) : null}
+        <button onClick={() => this.props.reset()}>Reset</button>
       </div>
     );
     return <div>{components}</div>;
@@ -59,4 +65,7 @@ function mapStateToProps(state) {
     stats: state.stats
   };
 }
-export default connect(mapStateToProps)(Calculator);
+export default connect(
+  mapStateToProps,
+  { reset }
+)(Calculator);

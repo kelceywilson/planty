@@ -12,6 +12,7 @@ export const HIGH = "HIGH";
 export const IRON = "IRON";
 export const PREGNANT = "PREGNANT";
 export const PROTEIN = "PROTEIN";
+export const RESET = "RESET";
 export const SEX = "SEX";
 export const WEIGHT = "WEIGHT";
 export const WEIGHED = "WEIGHED";
@@ -25,6 +26,11 @@ export const ZINC = "ZINC";
 // gender identity for medical purposes
 // activity level
 
+export function reset() {
+  return {
+    type: RESET
+  };
+}
 export function activity(level) {
   return {
     type: ACTIVITY,

@@ -13,6 +13,7 @@ import {
   IRON,
   PREGNANT,
   PROTEIN,
+  RESET,
   SEX,
   WEIGHED,
   WEIGHT,
@@ -55,6 +56,8 @@ export default function(state = { old: false, bmr: undefined }, action) {
       return { ...state, pregnant: action.payload };
     case PROTEIN:
       return { ...state, protein: action.payload };
+    case RESET:
+      return { old: false, bmr: undefined };
     case SEX:
       return { ...state, sex: action.payload };
     case WEIGHT:
